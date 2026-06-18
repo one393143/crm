@@ -1133,10 +1133,12 @@ async function loadStatus() {
   }
 }
 
-// ── Load Data ──────────────────────────────────────────────
 async function loadData(key, url, chipId) {
   try {
-    const finalUrl = isGitHubPages ? `api/${key}.json` : url;
+    let jsonKey = key;
+    if (key === 'eitlogs') jsonKey = 'eit_logs';
+    if (key === 'twopp') jsonKey = 'tw_opp';
+    const finalUrl = isGitHubPages ? `api/${jsonKey}.json` : url;
     const d = await api(finalUrl);
     S[key].cols = d.columns;
     S[key].rows = d.rows;
