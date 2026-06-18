@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CRP 戰情系統</title>
+<title>CRP 業務與交易查詢系統</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <style>
@@ -607,7 +607,7 @@ mark{
 
 <!-- Navbar -->
 <nav id="navbar">
-  <div class="nav-brand">⚡ CRP 戰情系統</div>
+  <div class="nav-brand">⚡ CRP 業務與交易查詢系統</div>
   <div class="nav-badges" id="nav-badges">
     <div class="badge"><span class="spinner" style="width:12px;height:12px;border-width:1.5px;"></span> 載入中...</div>
   </div>
@@ -629,7 +629,7 @@ mark{
   <!-- HOME -->
   <div id="tab-home" class="tab-pane active">
     <div class="home-hero">
-      <div class="home-title">客戶 360° 全域搜尋</div>
+      <div class="home-title">客戶與交易資料查詢</div>
       <div class="home-sub">搜尋範圍涵蓋聯絡人、訂購單、POS 交易所有欄位</div>
       <div class="search-row">
         <div class="search-type-group" id="search-type-group">
@@ -1345,8 +1345,8 @@ async function globalSearch() {
   
   if (searchMode === 'customer') {
     h += `<div id="analysis-section" class="analysis-card">
-      <div class="analysis-card-title">📊 客戶分析報告："${esc(q)}"</div>
-      <div id="analysis-loading" class="loading" style="padding:20px;"><div class="spinner"></div><div>載入分析圖表中…</div></div>
+      <div class="analysis-card-title">📊 客戶交易統計："${esc(q)}"</div>
+      <div id="analysis-loading" class="loading" style="padding:20px;"><div class="spinner"></div><div>載入交易統計圖表…</div></div>
       <div id="analysis-content" class="analysis-grid" style="display:none;">
         <div class="chart-box">
           <div class="chart-title">年度交易總金額 (TWD)</div>
@@ -1364,8 +1364,8 @@ async function globalSearch() {
     </div>`;
   } else if (searchMode === 'product') {
     h += `<div id="analysis-section" class="analysis-card">
-      <div class="analysis-card-title">📊 產品分析報告："${esc(q)}"</div>
-      <div id="analysis-loading" class="loading" style="padding:20px;"><div class="spinner"></div><div>載入分析圖表中…</div></div>
+      <div class="analysis-card-title">📊 產品銷售統計："${esc(q)}"</div>
+      <div id="analysis-loading" class="loading" style="padding:20px;"><div class="spinner"></div><div>載入交易統計圖表…</div></div>
       <div id="analysis-content" class="analysis-grid" style="display:none;">
         <div class="chart-box">
           <div class="chart-title">年度交易量</div>
@@ -1383,8 +1383,8 @@ async function globalSearch() {
     </div>`;
   } else if (searchMode === 'category') {
     h += `<div id="analysis-section" class="analysis-card">
-      <div class="analysis-card-title">📊 產品類別分析報告："${esc(q)}"</div>
-      <div id="analysis-loading" class="loading" style="padding:20px;"><div class="spinner"></div><div>載入分析圖表中…</div></div>
+      <div class="analysis-card-title">📊 產品品類銷售統計："${esc(q)}"</div>
+      <div id="analysis-loading" class="loading" style="padding:20px;"><div class="spinner"></div><div>載入交易統計圖表…</div></div>
       <div id="analysis-content" class="analysis-grid" style="display:none;">
         <div class="chart-box">
           <div class="chart-title">年度交易量</div>
@@ -1513,11 +1513,11 @@ document.getElementById('search-type-group').addEventListener('click', e => {
   if (searchMode === 'all') {
     input.placeholder = "輸入客戶名稱、產品型號、業務、發票號碼…";
   } else if (searchMode === 'customer') {
-    input.placeholder = "輸入客戶名稱以進行搜尋與客戶分析…";
+    input.placeholder = "輸入客戶名稱以搜尋並生成交易統計…";
   } else if (searchMode === 'product') {
-    input.placeholder = "輸入產品編號/型號以進行搜尋與產品分析…";
+    input.placeholder = "輸入產品編號/型號以搜尋並進行銷售統計…";
   } else if (searchMode === 'category') {
-    input.placeholder = "輸入產品類別/名稱以進行搜尋與類別分析…";
+    input.placeholder = "輸入產品類別/名稱以搜尋並進行品類統計…";
   }
 });
 
@@ -1736,7 +1736,7 @@ async function fetchCustomerAnalysis(q) {
     console.error(err);
     const section = document.getElementById('analysis-section');
     if (section) {
-      section.innerHTML = `<div style="color:#dc2626;padding:20px;text-align:center;">⚠ 載入客戶分析失敗: ${err.message}</div>`;
+      section.innerHTML = `<div style="color:#dc2626;padding:20px;text-align:center;">⚠ 載入客戶統計失敗: ${err.message}</div>`;
     }
   }
 }
@@ -1907,7 +1907,7 @@ async function fetchProductAnalysis(q) {
     console.error(err);
     const section = document.getElementById('analysis-section');
     if (section) {
-      section.innerHTML = `<div style="color:#dc2626;padding:20px;text-align:center;">⚠ 載入產品分析失敗: ${err.message}</div>`;
+      section.innerHTML = `<div style="color:#dc2626;padding:20px;text-align:center;">⚠ 載入產品統計失敗: ${err.message}</div>`;
     }
   }
 }
@@ -2078,7 +2078,7 @@ async function fetchCategoryAnalysis(q) {
     console.error(err);
     const section = document.getElementById('analysis-section');
     if (section) {
-      section.innerHTML = `<div style="color:#dc2626;padding:20px;text-align:center;">⚠ 載入類別分析失敗: ${err.message}</div>`;
+      section.innerHTML = `<div style="color:#dc2626;padding:20px;text-align:center;">⚠ 載入類別統計失敗: ${err.message}</div>`;
     }
   }
 }
