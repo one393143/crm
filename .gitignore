@@ -1,0 +1,9 @@
+crp_cache.db
+crp_cache.db-shm
+crp_cache.db-wal
+api/
+__pycache__/
+.idea/
+.vscode/
+dist/
+*.log
