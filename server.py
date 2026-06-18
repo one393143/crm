@@ -854,7 +854,7 @@ def api_analysis_category():
 if __name__ == "__main__":
     counts = db.get_db_counts()
     print("=" * 52)
-    print("  CRP 戰情系統 — Web 介面")
+    print("  CRM 業務與交易查詢系統 — Web 介面")
     print("=" * 52)
     if all(v == 0 for v in counts.values()):
         print("  [警告] 本地 DB 尚無資料！")

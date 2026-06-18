@@ -1,5 +1,5 @@
 """
-db.py — CRP 本地 SQLite 資料庫模組（全量同步版）
+db.py — CRM 本地 SQLite 資料庫模組（全量同步版）
 
 資料表設計：
   sync_log    : 記錄每個 App 最後同步時間
